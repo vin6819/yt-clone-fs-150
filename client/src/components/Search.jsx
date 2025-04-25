@@ -3,23 +3,24 @@ import axios from 'axios'
 // import dotenv from 'dotenv'
 // require(dotenv.config())
 
-export default function Feed() {
+export default function Search( {term} ) {
     // console.log('API Key:', process.env.REACT_APP_RAPID_API_KEY);
     const [videos, setVideos] = useState(null);
     const options = {
-      method: 'GET',
-      url: 'https://youtube-v31.p.rapidapi.com/search',
-      params: {
-        relatedToVideoId: '7ghhRHRP6t4',
-        part: 'id,snippet',
-        type: 'video',
-        maxResults: '50'
-      },
-      headers: {
-        'x-rapidapi-key': "ca0977fde7mshb26277dcbf36443p19aaa9jsn1e82bacf49ab",
-        'x-rapidapi-host': 'youtube-v31.p.rapidapi.com'
-      }
-    };
+        method: 'GET',
+        url: 'https://youtube-v31.p.rapidapi.com/search',
+        params: {
+          q: term,
+          part: 'snippet,id',
+          regionCode: 'US',
+          maxResults: '50',
+          order: 'date'
+        },
+        headers: {
+          'x-rapidapi-key': 'ca0977fde7mshb26277dcbf36443p19aaa9jsn1e82bacf49ab',
+          'x-rapidapi-host': 'youtube-v31.p.rapidapi.com'
+        }
+      };
     useEffect(() => {
         async function fetch() {
             // const response = await axios.get('http://localhost:5001/get-videos')

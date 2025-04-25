@@ -2,9 +2,11 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Feed from './components/Feed'
+import Search from './components/Search'
 
 function App() {
   const [feed, setFeed] = useState(true);
+  const [term, setTerm] = useState("")
   return (
     <>
       <header className="flex justify-center items-center m-[10px]">
@@ -19,8 +21,8 @@ function App() {
             </div>
             <div className="w-[60%] sm:w-[70%] flex justify-center content-center ">
                 <div className="w-[100%] flex justify-center content-center ">
-                    <input type="text" className="bg-black border border-white w-[150px] sm:w-[50%] h-[40px] rounded-l-[50px] p-4" placeholder="Search" />
-                    <button className="hover:bg-gray-700 border border-white bg-slate-500 w-[50px] h-[40px]  flex justify-center content-center rounded-r-[50px] ">
+                    <input type="text" className="bg-black border border-white w-[150px] sm:w-[50%] h-[40px] rounded-l-[50px] p-4" placeholder="Search" onInput={(e) => setTerm(e.target.value)} />
+                    <button className="hover:bg-gray-700 border border-white bg-slate-500 w-[50px] h-[40px]  flex justify-center content-center rounded-r-[50px] " onClick={() => setFeed(false)}>
                         <img src="/assets/search.png" alt="search" className="w-[35px]" />
                     </button>
                 </div>
@@ -32,7 +34,7 @@ function App() {
                 </div>
             </div>
         </header>
-      
+      { feed ? <Feed /> : <Search term={term}/>}
     </>
   )
 }
