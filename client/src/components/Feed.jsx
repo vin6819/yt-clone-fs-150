@@ -35,6 +35,11 @@ export default function Feed() {
         <div className="flex justify-center items-center flex-wrap">
             { videos && videos.map((video) => (
                 <div className="w-[400px] m-[30px] cursor-pointer" key={video.id.videoId}>
+                    <a
+                    href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <img src={video.snippet.thumbnails.default.url} alt="" className="w-[400px] cursor-pointer" />
                     <div className="cursor-pointer">{video.snippet.title}</div>
                     <div className="flex justify-start items-center">
@@ -47,6 +52,7 @@ export default function Feed() {
                         <pre>   </pre>
                         <div>Published At: {(video.snippet.publishedAt).split("T")[0]}</div>
                     </div>
+                    </a>
                 </div>
             )) }
         </div>
